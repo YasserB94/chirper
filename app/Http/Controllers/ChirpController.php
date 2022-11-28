@@ -85,7 +85,7 @@ class ChirpController extends Controller
      */
     public function update(ChirpRequest $request, Chirp $chirp)
     {
-//Handled in policy  $this->authorize('update',$chirp);
+        $this->authorize('update',$chirp);
         $validated = $request->validated();
         $chirp->update($validated);
         return redirect(route('chirps.index'));
@@ -100,5 +100,8 @@ class ChirpController extends Controller
     public function destroy(Chirp $chirp)
     {
         //
+        $this->authorize('delete',$chirp);
+        $chirp->delete();
+        return redirect(route('chirps.index'));
     }
 }
