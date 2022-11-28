@@ -42,9 +42,7 @@ const editing = ref(false);
                             Edit
                         </button>
                         <DropdownLink as="button" :href="route('chirps.destroy', chirp.id)" method="delete">
-
                             Delete
-
                         </DropdownLink>
                     </template>
                 </Dropdown>
