@@ -30,9 +30,10 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
 Route::resource('chirps', ChirpController::class)
 
-    ->only(['index', 'store'])
+    ->only(['index', 'store','update'])
 
     ->middleware(['auth', 'verified']);
 

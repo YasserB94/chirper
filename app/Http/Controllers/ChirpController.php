@@ -14,10 +14,17 @@ class ChirpController extends Controller
      * @return \Inertia\Response
      */
     public function index()
+
     {
-        return Inertia::render('Chirps/Index',[
+
+        return Inertia::render('Chirps/Index', [
+
+            //
+
+            'chirps' => Chirp::with('user:id,name')->latest()->get(),
 
         ]);
+
     }
 
     /**
@@ -42,7 +49,7 @@ class ChirpController extends Controller
 
         $validated = $request->validate([
 
-            'message' => 'required|string|max:255',
+            'message' => ['required','string','max:255'],
 
         ]);
         $request->user()->chirps()->create($validated);
